@@ -3,20 +3,42 @@ $(function () {
   const $body = $('body');
   const $tabMenu = $('.tab-menu > li');
   const $tabContents = $('.tab-con-item');
+  const $minimi = $('.minimi');
 
   // 배열에 이미지와 텍스트 정보를 저장
   const bgArr = [
     {
       pic: 'blackpink01.jpg',
       title: '지수가 제일 예뻐요',
+      action: function () {
+        $minimi.css({
+          backgroundColor: 'orangered',
+          backgroundImage: 'url(img/jisoo01.png)',
+          Transform: 'translatey(-50px)',
+        });
+      },
     },
     {
       pic: 'blackpink02.jpg',
       title: '지수가 정말 예뻐요',
+      action: function () {
+        $minimi.css({
+          backgroundColor: 'yellowgreen',
+          backgroundImage: 'url(img/jisoo02.png)',
+          Transform: 'rotate(20deg)',
+        });
+      },
     },
     {
       pic: 'blackpink03.jpg',
       title: '지수가 항상 예뻐요',
+      action: function () {
+        $minimi.css({
+          backgroundColor: 'skyblue',
+          backgroundImage: 'url(img/jisoo03.png)',
+          Transform: 'scale(1.5)',
+        });
+      },
     },
   ];
 
@@ -27,7 +49,7 @@ $(function () {
 
   // 초기화
   let idx = 0;
-  tabAction(idx);
+  // tabAction(idx);
 
   // 공통의 동작을 함수로 정의
   function tabAction(index) {
@@ -42,6 +64,8 @@ $(function () {
 
     // 탭 콘텐츠의 제목을 수정
     $tabContents.eq(index).find('h2').text(bgArr[index].title);
+
+    bgArr[index].action();
   }
 
   $tabMenu.on('click', function (e) {
